@@ -1,5 +1,3 @@
-// @ts-check
-
 import _ from 'lodash';
 import HttpErrors from 'http-errors';
 
@@ -56,23 +54,6 @@ export default (app, defaultState = {}) => {
       .code(201)
       .header('Content-Type', 'application/json; charset=utf-8')
       .send({ token, username });
-  });
-
-  app.get('/api/v1/hello', (req, reply) => {
-    reply.send(`Hello Ivan`);
-  });
-
-  app.get('/api/v1/data', { preValidation: [app.authenticate] }, (req, reply) => {
-    const user = state.users.find(({ id }) => id === req.user.userId);
-
-    if (!user) {
-      reply.send(new Unauthorized());
-      return;
-    }
-
-    reply
-      .header('Content-Type', 'application/json; charset=utf-8')
-      .send(_.omit(state, 'users'));
   });
 
   app

@@ -1,7 +1,6 @@
 // @ts-check
 import path from 'path';
 import { fileURLToPath } from 'url';
-// import fastifyStatic from 'fastify-static';
 import fastifyJWT from '@fastify/jwt';
 import HttpErrors from 'http-errors';
 
@@ -18,15 +17,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const appPath = path.join(__dirname, '..');
 const isDevelopment = !isProduction;
 
-// const setUpStaticAssets = (app) => {
-//   app.register(fastifyStatic, {
-//     root: path.join(appPath, 'dist/public'),
-//     prefix: '/assets',
-//   });
-// };
-
 const setUpAuth = (app) => {
-  // TODO add socket auth
   app
     .register(fastifyJWT, {
       secret: 'supersecret',
@@ -42,7 +33,6 @@ const setUpAuth = (app) => {
 
 export default async (app, options) => {
   setUpAuth(app);
-  // setUpStaticAssets(app);
   addRoutes(app, options?.state || {});
 
   return app;
