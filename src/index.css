@@ -1,0 +1,45 @@
+.custom-tooltip {
+  position: absolute;
+  display: inline;
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  margin-left: 1rem;
+  margin-top: -0.5rem;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 0rem 1rem 1rem 1rem;
+  opacity: 0.7;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.93, 0.88, 0.2, 0.8);
+}
+
+.custom-tooltip .tooltip-text {
+  text-align: center;
+  color: #fff;
+  opacity: 1;
+}
+
+.btn-lightblue {
+  color: #6e6767;
+  background-color: lightblue;
+}
+
+.btn-lightblue:hover {
+  color: black;
+  background-color: rgb(134, 163, 172);
+}
+
+.bckgrnd-lightblue {
+  background-color: lightblue;
+}
+
+a {
+  text-decoration: none;
+  color: #6e6767;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
