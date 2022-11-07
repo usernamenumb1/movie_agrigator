@@ -1,16 +1,22 @@
 /* eslint-disable no-undef */
-import React, { useEffect } from 'react';
-import axios from 'axios';
-
-const getter = () => axios.get('/api/v1/hello').then(console.log);
+import React, { useContext } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Nav from './components/Nav';
+import { AuthContext } from './components/context/AuthProvider';
+import LogIn from './components/LoginPage/LogIn';
+import routes from './routes';
 
 function App(): JSX.Element {
-  useEffect(() => {
-    getter();
-  }, []);
+  const { isAuthorised } = useContext(AuthContext);
   return (
-    <div className="App">
-      Start with my own server
+    <div className="d-flex flex-column h-100">
+      <Nav />
+      <Routes>
+        <Route path={routes.loginPage()} element={<LogIn />} />
+        {/* <Route path={routes.signUpPage()} element={<SignUp />} /> */}
+        <Route path={routes.mainChatPage()} element={isAuthorised !== 'no token' ? null : <Navigate to="/login" />} />
+        {/* <Route path="*" element={<NotFound />} /> */}
+      </Routes>
     </div>
   );
 }
