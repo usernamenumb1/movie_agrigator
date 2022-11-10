@@ -1,28 +1,27 @@
-import React, { createContext, useState } from 'react';
-import { logInArgs, authContextObj } from '../../interfaces';
+import React, { createContext, useState } from "react";
+import { LogInArgs, AuthContext } from "../../interfaces";
 
-export const AuthContext = createContext({} as authContextObj);
+export const AuthorizationContext = createContext({} as AuthContext);
 
 export function AuthContextProvider({ children }: { children: JSX.Element }) {
   const isTokenExists = () => {
-    const token: string | null = localStorage.getItem('token');
-    return token || 'no token';
+    const token: string = localStorage.getItem("token") || "no token";
+    return token !== "no token";
   };
-  const [isAuthorised, setAuthorised] = useState(isTokenExists());
-  const logIn = ({ username, token }: logInArgs) => {
-    console.log(token);
-    localStorage.setItem('username', username);
-    localStorage.setItem('token', token);
+  const [isAuthorized, setAuthorised] = useState<boolean>(isTokenExists());
+  const logIn = ({ username, token }: LogInArgs) => {
+    localStorage.setItem("username", username);
+    localStorage.setItem("token", token);
     setAuthorised(isTokenExists());
   };
   const logOut = () => {
     localStorage.clear();
-    setAuthorised('no token');
+    setAuthorised(false);
   };
-  const contextValue: authContextObj = { isAuthorised, logIn, logOut };
+  const contextValue: AuthContext = { isAuthorized, logIn, logOut };
   return (
-    <AuthContext.Provider value={contextValue}>
+    <AuthorizationContext.Provider value={contextValue}>
       {children}
-    </AuthContext.Provider>
+    </AuthorizationContext.Provider>
   );
 }
