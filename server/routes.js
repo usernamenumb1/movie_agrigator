@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import HttpErrors from 'http-errors';
+import _ from "lodash";
+import HttpErrors from "http-errors";
 
 const { Unauthorized, Conflict } = HttpErrors;
 
@@ -8,8 +8,8 @@ const getNextId = () => Number(_.uniqueId());
 const buildState = (defaultState) => {
   const state = {
     users: [
-      { id: 1, username: 'admin', password: 'admin' },
-      { id: 2, username: 'admin1', password: 'admin1' },
+      { id: 1, username: "admin", password: "admin" },
+      { id: 2, username: "admin1", password: "admin1" },
     ],
   };
 
@@ -23,9 +23,9 @@ const buildState = (defaultState) => {
 export default (app, defaultState = {}) => {
   const state = buildState(defaultState);
 
-  app.post('/api/v1/login', async (req, reply) => {
-    const username = _.get(req, 'body.username');
-    const password = _.get(req, 'body.password');
+  app.post("/api/v1/login", async (req, reply) => {
+    const username = _.get(req, "body.username");
+    const password = _.get(req, "body.password");
     const user = state.users.find((u) => u.username === username);
 
     if (!user || user.password !== password) {
@@ -37,9 +37,9 @@ export default (app, defaultState = {}) => {
     reply.send({ token, username });
   });
 
-  app.post('/api/v1/signup', async (req, reply) => {
-    const username = _.get(req, 'body.username');
-    const password = _.get(req, 'body.password');
+  app.post("/api/v1/signup", async (req, reply) => {
+    const username = _.get(req, "body.username");
+    const password = _.get(req, "body.password");
     const user = state.users.find((u) => u.username === username);
 
     if (user) {
@@ -52,13 +52,11 @@ export default (app, defaultState = {}) => {
     state.users.push(newUser);
     reply
       .code(201)
-      .header('Content-Type', 'application/json; charset=utf-8')
+      .header("Content-Type", "application/json; charset=utf-8")
       .send({ token, username });
   });
 
-  app
-    .get('*', (_req, reply) => {
-      reply
-        .code(200);
-    });
+  app.get("*", (_req, reply) => {
+    reply.code(200);
+  });
 };

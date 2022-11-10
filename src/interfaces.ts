@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
-export interface logInArgs {
-  username: string,
-  token: string,
+export interface LogInArgs {
+  username: string;
+  token: string;
 }
 
-export interface authContextObj {
-  isAuthorised: string | null;
-  logIn: (arg: logInArgs) => void;
+export interface AuthContext {
+  isAuthorized: boolean;
+  logIn: (arg: LogInArgs) => void;
   logOut: () => void;
 }
 
-export interface initialFormValues {
+export interface InitialFormValues {
   username: string;
   password: string;
 }
 
-export interface formProps {
+export interface FormProps {
   username: string;
   password: string;
   logIn: (e: React.FormEvent<HTMLFormElement>) => void;
