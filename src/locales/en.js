@@ -28,9 +28,11 @@ export default {
       toLong: "Not more than 20 symbols",
       unauthorized: "No such user or wrong password",
     },
-    mainPage: {},
+    mainPage: {
+      slogan: "Dive into the MOVIESEA",
+    },
     nav: {
-      AppName: "Movie agrigator",
+      AppName: "MOVIESEA",
       logoutButton: "Log out",
     },
   },

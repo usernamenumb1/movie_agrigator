@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Monoton";
+  src: local("Monoton"), url(./fonts/Monoton-Regular.ttf) format("truetype");
+}
+
 .custom-tooltip {
   position: absolute;
   display: inline;
@@ -20,18 +25,23 @@
   opacity: 1;
 }
 
-.btn-lightblue {
-  color: #6e6767;
-  background-color: lightblue;
+.btn-steelblue {
+  color: steelblue;
+  border-color: steelblue;
 }
 
-.btn-lightblue:hover {
-  color: black;
-  background-color: rgb(157, 208, 224);
+.btn-steelblue:hover {
+  color: white;
+  background-color: steelblue;
+  border-color: steelblue;
 }
 
-.bckgrnd-lightblue {
-  background-color: lightblue;
+.bckgrnd-steelblue {
+  background-color: steelblue;
+}
+
+.brdr-steelblue {
+  border-color: steelblue;
 }
 
 a {
@@ -43,3 +53,37 @@ a:hover {
   text-decoration: underline;
   color: black;
 }
+
+.app-name {
+  font-family: Monoton, sans-serif;
+  margin-bottom: 0%;
+  color: steelblue;
+}
+
+.horizontal-scrollable>.row {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.horizontal-scrollable>.row>.col-lg-2 {
+  display: inline-block;
+  float: none;
+}
+
+.white-space {
+  white-space: normal;
+}
+
+body {
+  color: rgb(28, 52, 72);
+}
+
+/* .grad1 {
+  background: red;
+  background: -webkit-linear-gradient(left, indianred, lightcoral, darkorange, darkgoldenrod, seagreen, lightseagreen, deepskyblue, cornflowerblue);
+  background: -o-linear-gradient(right, indianred, lightcoral, darkorange, darkgoldenrod, seagreen, lightseagreen, deepskyblue, cornflowerblue);
+  background: -moz-linear-gradient(right, indianred, lightcoral, darkorange, darkgoldenrod, seagreen, lightseagreen, deepskyblue, cornflowerblue);
+  background: linear-gradient(to right, indianred, lightcoral, darkorange, darkgoldenrod, seagreen, lightseagreen, deepskyblue, cornflowerblue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */

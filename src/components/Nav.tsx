@@ -7,18 +7,18 @@ export default function Nav() {
   const { t } = useTranslation();
   const { isAuthorized, logOut } = useContext(AuthorizationContext);
   return (
-    <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white rounded-1 mb-5">
+    <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white rounded-1 mb-auto">
       <div className="container">
         <Link
-          className="navbar-brand text-dark text-decoration-none pacifico"
+          className="navbar-brand text-dark text-decoration-none pacifico h-1"
           to="/"
         >
-          {t("nav.AppName")}
+          <h2 className="app-name grad1">{t("nav.AppName")}</h2>
         </Link>
         {!isAuthorized ? null : (
           <button
             type="button"
-            className="btn btn-lightblue rounded-3"
+            className="btn btn-steelblue rounded-5"
             onClick={logOut}
           >
             {t("nav.logoutButton")}

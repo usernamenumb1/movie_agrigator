@@ -46,8 +46,8 @@ export default function Form() {
   const { username, password } = formik.values;
 
   return (
-    <div className="card shadow-sm">
-      <div className="card-body row p-5">
+    <div className="card border-0">
+      <div className="card-body row p-xl-5 pb-0">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -94,12 +94,12 @@ export default function Form() {
               </div>
             )}
           </div>
-          <button type="submit" className="w-100 mb-3 btn btn-lightblue">
+          <button type="submit" className="w-100 btn btn-steelblue rounded-5">
             {t("loginPage.submitButton")}
           </button>
         </form>
       </div>
-      <div className="card-footer p-4 bckgrnd-lightblue">
+      <div className="card-footer p-4 border-0 rounded-5">
         <div className="text-center">
           <span className="pe-1">{t("loginPage.footer.span")}</span>
           <Link to={routes.signUpPage()}>{t("loginPage.footer.link")}</Link>
