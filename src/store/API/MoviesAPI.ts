@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { FetchedMovies } from "../../interfaces";
 import API_TOKEN from "../../secret";
 
-const MoviesAPI = createApi({
+const moviesAPI = createApi({
   reducerPath: "popularMovieAPI",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3" }),
   endpoints: (build) => ({
@@ -18,4 +18,4 @@ const MoviesAPI = createApi({
   }),
 });
 
-export default MoviesAPI;
+export default moviesAPI;

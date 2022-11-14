@@ -1,9 +1,9 @@
 import React from "react";
-import MoviesAPI from "../../store/API/MoviesAPI";
+import moviesAPI from "../../store/API/MoviesAPI";
 import MovieCard from "./MovieCard";
 
 export default function PopularMovies() {
-  const { data } = MoviesAPI.useFetchPopularMoviesQuery("ru-RU");
+  const { data } = moviesAPI.useFetchPopularMoviesQuery("ru-RU");
   return (
     <div className="container horizontal-scrollable">
       <h2>Popular movies</h2>
