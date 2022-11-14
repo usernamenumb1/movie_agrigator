@@ -24,3 +24,27 @@ export interface FormProps {
   usernameError: string | undefined;
   passwordError: string | undefined;
 }
+
+export interface Poster {
+  previewURL: string;
+  URL: string;
+  _id: string;
+}
+
+export interface Movie {
+  id: number;
+  title: string;
+  overview: string;
+  vote_average: number;
+  poster_path: string;
+  release_date: string;
+}
+export interface FetchedMovies {
+  page: number;
+  results: Movie[];
+  totalPages: number;
+}
+
+export interface MovieStore {
+  currentMovie: Movie | null;
+}
