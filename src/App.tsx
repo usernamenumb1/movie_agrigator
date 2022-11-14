@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import { AuthorizationContext } from "./components/context/AuthProvider";
 import LogIn from "./components/LoginPage/LogIn";
 import ProtectedMainPage from "./components/PrivatRoutes/ProtectedMainPage";
+import MainPage from "./components/MainPage/MainPage";
 import routes from "./routes";
 
 function App(): JSX.Element {
@@ -16,7 +17,7 @@ function App(): JSX.Element {
         <Route path={routes.loginPage()} element={<LogIn />} />
         {/* <Route path={routes.signUpPage()} element={<SignUp />} /> */}
         <Route element={<ProtectedMainPage isAuthorized={isAuthorized} />}>
-          <Route path={routes.mainChatPage()} element={null} />
+          <Route path={routes.mainChatPage()} element={<MainPage />} />
         </Route>
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
