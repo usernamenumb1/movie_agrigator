@@ -31,6 +31,11 @@ export interface Poster {
   _id: string;
 }
 
+export interface singleMovieQueryParams {
+  language: string;
+  id: string | undefined;
+}
+
 export interface Movie {
   id: number;
   title: string;
@@ -43,6 +48,30 @@ export interface FetchedMovies {
   page: number;
   results: Movie[];
   totalPages: number;
+}
+export interface FetchedSingleMovie {
+  backdrop_path: string;
+  budget: number;
+  revenue: number;
+  genres: { id: string; name: string }[];
+  title: string;
+  overview: string;
+  status: string;
+  poster_path: string;
+  tagline: string;
+  vote_average: number;
+}
+export interface NormalizedFetchedSingleMovie {
+  backdropPath: string;
+  budget: number;
+  revenue: number;
+  genres: string[];
+  title: string;
+  review: string;
+  status: string;
+  posterPath: string;
+  tagline: string;
+  voteAverage: number;
 }
 
 export interface MovieStore {

@@ -7,6 +7,7 @@ import LogIn from "./components/LoginPage/LogIn";
 import ProtectedMainPage from "./components/PrivatRoutes/ProtectedMainPage";
 import MainPage from "./components/MainPage/MainPage";
 import routes from "./routes";
+import SindleMoviePage from "./components/SingleMoviePage/SingleMoviePage";
 
 function App(): JSX.Element {
   const { isAuthorized } = useContext(AuthorizationContext);
@@ -18,6 +19,10 @@ function App(): JSX.Element {
         {/* <Route path={routes.signUpPage()} element={<SignUp />} /> */}
         <Route element={<ProtectedMainPage isAuthorized={isAuthorized} />}>
           <Route path={routes.mainChatPage()} element={<MainPage />} />
+          <Route
+            path={routes.singleMoviePage()}
+            element={<SindleMoviePage />}
+          />
         </Route>
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>

@@ -9,5 +9,6 @@ export default {
   mainChatPage: () => "/",
   loginPage: () => [host, "login"].join("/"),
   signUpPage: () => [host, "signup"].join("/"),
-  linkToImage: (posterPath: string) => [imageHost, "original", posterPath].join("/"),
+  singleMoviePage: () => [host, "movie", ":id"].join("/"),
+  linkToImage: (posterPath: string | undefined) => [imageHost, "original", posterPath].join("/"),
 };
