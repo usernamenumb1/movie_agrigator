@@ -78,6 +78,47 @@ body {
   color: rgb(28, 52, 72);
 }
 
+.card>a {
+  text-decoration: none;
+}
+
+.transparent {
+  opacity: 1;
+}
+
+div.transparent>div>img {
+  opacity: 1;
+}
+
+div.background-settings {
+  height: auto;
+  width: auto;
+  background-position: right -200px top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+div.custom-bg {
+  background-image: linear-gradient(to right, rgba(31.5, 31.5, 31.5, 1) 150px, rgba(31.5, 31.5, 31.5, 0.84) 100%);
+}
+
+.text-white {
+  color: whitesmoke;
+}
+
+.favourits {
+  border: none;
+  color: whitesmoke;
+  opacity: 0.7;
+}
+
+.favourits:hover {
+  transform: scale(1.3, 1.3);
+  border: none;
+  color: whitesmoke;
+  opacity: 1;
+}
+
 /* .grad1 {
   background: red;
   background: -webkit-linear-gradient(left, indianred, lightcoral, darkorange, darkgoldenrod, seagreen, lightseagreen, deepskyblue, cornflowerblue);
