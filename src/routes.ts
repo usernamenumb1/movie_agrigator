@@ -11,4 +11,5 @@ export default {
   signUpPage: () => [host, "signup"].join("/"),
   singleMoviePage: () => [host, "movie", ":id"].join("/"),
   linkToImage: (posterPath: string | undefined) => [imageHost, "original", posterPath].join("/"),
+  linkToBGImage: (posterPath: string | undefined) => [imageHost, "w1920_and_h800_multi_faces", posterPath].join("/"),
 };
