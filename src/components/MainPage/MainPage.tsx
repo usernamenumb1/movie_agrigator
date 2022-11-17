@@ -1,6 +1,6 @@
 import React from "react";
 import PopularMovies from "./PopularMovies";
-import Searching from "./Searching";
+import Searching from "./SearchingBlock/Searching";
 
 export default function MainPage() {
   return (

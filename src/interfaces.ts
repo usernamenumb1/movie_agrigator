@@ -35,6 +35,11 @@ export interface singleMovieQueryParams {
   language: string;
   id: string | undefined;
 }
+export interface searchedMovieQueryParams {
+  language: string;
+  query: string | undefined;
+  page?: number;
+}
 
 export interface Movie {
   id: number;
