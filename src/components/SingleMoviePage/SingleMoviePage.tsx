@@ -1,14 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { IoMdHeart } from "react-icons/io";
 import routes from "../../routes";
-import MoviesAPI from "../../store/API/MoviesAPI";
+import moviesAPI from "../../store/API/MoviesAPI";
 
 export default function SindleMoviePage() {
   const { id } = useParams();
 
-  const { data } = MoviesAPI.useFetchSingleMovieQuery({
-    language: "en-US",
+  const { i18n } = useTranslation();
+  const currentLocale = i18n.language;
+
+  const { data } = moviesAPI.useFetchSingleMovieQuery({
+    language: currentLocale,
     id,
   });
 
@@ -38,7 +42,9 @@ export default function SindleMoviePage() {
                 <div className="col-xl-9 px-4">
                   <div className="row mb-3">
                     <h2 className="m-0">{data?.title}</h2>
-                    <span className="fw-lighter">{data?.genres.join(', ')}</span>
+                    <span className="fw-lighter">
+                      {data?.genres.join(", ")}
+                    </span>
                   </div>
                   <div className="row mb-3 align-items-center">
                     <div className="col-xl-1">

@@ -83,7 +83,7 @@ body {
 }
 
 .transparent {
-  opacity: 1;
+  opacity: 0.8;
 }
 
 div.transparent>div>img {
@@ -117,6 +117,26 @@ div.custom-bg {
   border: none;
   color: whitesmoke;
   opacity: 1;
+}
+
+.ontop {
+  z-index: 9;
+}
+
+.search-bg {
+  border: none;
+  min-height: 300px;
+  background-size: cover;
+  background-image: url('./images/37130.jpg');
+}
+
+@media (max-width: 800px) {
+  .search-bg {
+    border: none;
+    min-height: 180px;
+    background-size: cover;
+    background-image: url('./images/37130.jpg');
+  }
 }
 
 /* .grad1 {
