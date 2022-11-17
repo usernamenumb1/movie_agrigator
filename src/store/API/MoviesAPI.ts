@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   FetchedMovies,
   NormalizedFetchedSingleMovie,
-  singleMovieQueryParams,
-  searchedMovieQueryParams,
+  SingleMovieQueryParams,
+  SearchedMovieQueryParams,
 } from "../../interfaces";
 import API_TOKEN from "../../secret";
 import { transformSingleMovieResponse } from "../../utils";
@@ -21,7 +21,7 @@ const moviesAPI = createApi({
         },
       }),
     }),
-    fetchSingleMovie: build.query<NormalizedFetchedSingleMovie, singleMovieQueryParams>({
+    fetchSingleMovie: build.query<NormalizedFetchedSingleMovie, SingleMovieQueryParams>({
       query: ({ language, id }) => ({
         url: `/movie/${id}`,
         params: {
@@ -31,7 +31,7 @@ const moviesAPI = createApi({
       }),
       transformResponse: transformSingleMovieResponse,
     }),
-    fetchSearchedMovies: build.query<FetchedMovies, searchedMovieQueryParams>({
+    fetchSearchedMovies: build.query<FetchedMovies, SearchedMovieQueryParams>({
       query: ({ language, query, page = 1 }) => ({
         url: "/search/movie",
         params: {

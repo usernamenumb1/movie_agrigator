@@ -31,11 +31,11 @@ export interface Poster {
   _id: string;
 }
 
-export interface singleMovieQueryParams {
+export interface SingleMovieQueryParams {
   language: string;
   id: string | undefined;
 }
-export interface searchedMovieQueryParams {
+export interface SearchedMovieQueryParams {
   language: string;
   query: string | undefined;
   page?: number;
