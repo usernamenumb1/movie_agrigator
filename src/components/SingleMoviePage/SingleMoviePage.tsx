@@ -17,7 +17,7 @@ export default function SindleMoviePage() {
   });
 
   const setFavorits = () => {
-    console.log("in favorites");
+    console.log("in favorits");
   };
 
   return (
@@ -56,7 +56,7 @@ export default function SindleMoviePage() {
                       <button
                         type="button"
                         aria-label="Like"
-                        className="ms-2 p-1 btn favourits rounded-5"
+                        className="ms-2 p-1 btn favorits rounded-5"
                         onClick={setFavorits}
                       >
                         <IoMdHeart size="2rem" />
