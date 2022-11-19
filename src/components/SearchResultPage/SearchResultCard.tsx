@@ -23,11 +23,7 @@ export default function SearchResultCard({
       <Link to={`/movie/${id}`}>
         <div className="row g-0">
           <div className="col-md-4 col-xl-2">
-            <img
-              className="card-img-top rounded-3"
-              src={poster}
-              alt={title}
-            />
+            <img className="card-img-top rounded-3" src={poster} alt={title} />
             <div className="card-img-overlay">{score}</div>
           </div>
           <div className="col-md-8 col-xl-10">

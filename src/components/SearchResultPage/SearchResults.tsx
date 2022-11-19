@@ -7,8 +7,11 @@ import SearchResultCard from "./SearchResultCard";
 
 export default function SearchResults() {
   const [searchParams] = useSearchParams();
-  const { i18n: { language } } = useTranslation();
-  const query = searchParams.get('query');
+  const query = searchParams.get("query");
+  const {
+    i18n: { language },
+  } = useTranslation();
+
   const { data } = moviesAPI.useFetchSearchedMoviesQuery({ language, query });
   return (
     <div className="container pt-4">

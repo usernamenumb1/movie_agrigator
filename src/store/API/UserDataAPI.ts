@@ -1,28 +1,35 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface Request {
-  movieId: string | undefined;
+  movieId?: string | undefined;
   username: string | null;
+  link?: string;
+  query?: string;
 }
 
-interface QueryParams {
+interface PostQueryParams {
   req: Request;
   TOKEN: string | null;
 }
 
+interface GetQueryParams {
+  username: string | null;
+  TOKEN: string | null;
+}
+
+interface HistoryItem {
+  id: number;
+  link: string;
+  query: string;
+}
 interface UserData {
   id: number;
   favorites: number[];
   history: string[];
 }
 
-// interface FetchUserQueryParams {
-//   username: string | null;
-//   TOKEN: string | null;
-// }
-
 const userDataApi = createApi({
-  reducerPath: "favoritesApi",
+  reducerPath: "userDataApi",
   baseQuery: fetchBaseQuery({ baseUrl: "" }),
   endpoints: (build) => ({
     fetchUsersFavorits: build.query({
@@ -34,7 +41,7 @@ const userDataApi = createApi({
         },
       }),
     }),
-    setUsersFavorites: build.mutation<UserData, QueryParams>({
+    setUsersFavorites: build.mutation<UserData, PostQueryParams>({
       query: ({ req, TOKEN }) => ({
         headers: { Authorisation: `Bearer ${TOKEN}` },
         url: "/api/v1/data/favorits",
@@ -42,10 +49,35 @@ const userDataApi = createApi({
         body: req,
       }),
     }),
-    deleteUsersFavorit: build.mutation<UserData, QueryParams>({
+    deleteUsersFavorit: build.mutation<UserData, PostQueryParams>({
       query: ({ req, TOKEN }) => ({
         headers: { Authorisation: `Bearer ${TOKEN}` },
         url: "/api/v1/data/favorits",
+        method: "DELETE",
+        body: req,
+      }),
+    }),
+    fetchUsersHistory: build.query<HistoryItem[], GetQueryParams>({
+      query: ({ username, TOKEN }) => ({
+        headers: { Authorisation: `Bearer ${TOKEN}` },
+        url: "/api/v1/data/history",
+        params: {
+          username,
+        },
+      }),
+    }),
+    setUsersHistory: build.mutation<UserData, PostQueryParams>({
+      query: ({ req, TOKEN }) => ({
+        headers: { Authorisation: `Bearer ${TOKEN}` },
+        url: "/api/v1/data/history",
+        method: "POST",
+        body: req,
+      }),
+    }),
+    deleteUsersHistory: build.mutation<UserData, PostQueryParams>({
+      query: ({ req, TOKEN }) => ({
+        headers: { Authorisation: `Bearer ${TOKEN}` },
+        url: "/api/v1/data/history",
         method: "DELETE",
         body: req,
       }),

@@ -10,6 +10,7 @@ import routes from "./routes";
 import SindleMoviePage from "./components/SingleMoviePage/SingleMoviePage";
 import Favorits from "./components/FavoritsPage/Favorits";
 import SearchResults from "./components/SearchResultPage/SearchResults";
+import History from "./components/HistoryPage/History";
 
 function App(): JSX.Element {
   const { isAuthorized } = useContext(AuthorizationContext);
@@ -24,6 +25,7 @@ function App(): JSX.Element {
         <Route path={routes.searchResultsPage()} element={<SearchResults />} />
         <Route element={<ProtectedMainPage isAuthorized={isAuthorized} />}>
           <Route path={routes.favoritsPage()} element={<Favorits />} />
+          <Route path={routes.historyPage()} element={<History />} />
         </Route>
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>

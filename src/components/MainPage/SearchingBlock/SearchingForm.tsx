@@ -5,10 +5,15 @@ import { useNavigate } from "react-router-dom";
 import SearchPreview from "./SearchPreview";
 import useDebounce from "../../../hooks/useDebounce";
 import routes from "../../../routes";
+import userDataApi from "../../../store/API/UserDataAPI";
 
 export default function SearchingForm() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
+  const TOKEN = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
+
+  const [setUsersHistory] = userDataApi.useSetUsersHistoryMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -18,9 +23,13 @@ export default function SearchingForm() {
       message: Yup.string().required(),
     }),
     onSubmit: ({ message }) => {
+      const pathname = routes.searchResultsPage();
+      const search = `?query=${message}`;
+      const link = [pathname, search].join("");
+      setUsersHistory({ req: { link, username, query: message }, TOKEN });
       navigate({
-        pathname: routes.searchResultsPage(),
-        search: `?query=${message}`,
+        pathname,
+        search,
       });
       // console.log(message);
       // actions.resetForm();

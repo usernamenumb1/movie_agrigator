@@ -88,8 +88,9 @@ export default (app, defaultState = {}) => {
     const alreadyDeleted = !usersFavorites.includes(movieId);
     if (alreadyDeleted) {
       reply
+        .code(500)
         .header("Content-Type", "application/json; charset=utf-8")
-        .send(new Conflict());
+        .send("already deleted!");
     } else {
       const updatedData = state.usersData.map((data) => data.id === userId ? { id: userId, favorits: [...deletedFavorites], history: [...data.history]} : data);
       state.usersData = updatedData;
@@ -108,6 +109,40 @@ export default (app, defaultState = {}) => {
       .code(200)
       .header("Content-Type", "application/json; charset=utf-8")
       .send(usersFavorites);
+  });
+
+  app.post("/api/v1/data/history", async (req, reply) => {
+    const { link, query, username } = req.body;
+    const { id: userId } = state.users.find((user) => user.username === username);
+    const newItemId = getNextId();
+    const updatedData = state.usersData
+      .map((data) => data.id === userId ? { id: userId, favorits: [...data.favorits], history: [...data.history, {id: newItemId, link, query }]} : data);
+    state.usersData = updatedData;
+    reply
+      .code(200)
+      .header("Content-Type", "application/json; charset=utf-8")
+      .send(state.usersData);
+  });
+
+  app.delete("/api/v1/data/history", async (req, reply) => {
+    const { username } = req.body;
+    const { id: userId } = state.users.find((user) => user.username === username);
+    const updatedData = state.usersData.map((data) => data.id === userId ? { id: userId, favorits: [...data.favorits], history: []} : data);
+    state.usersData = updatedData;
+    reply
+      .code(200)
+      .header("Content-Type", "application/json; charset=utf-8")
+      .send(state.usersData);
+  });
+
+  app.get("/api/v1/data/history", async (req, reply) => {
+    const { username } = req.query;
+    const { id: userId } = state.users.find((user) => user.username === username);
+    const { history: usersHistory} = state.usersData.find((userData) => userData.id === userId);
+    reply
+      .code(200)
+      .header("Content-Type", "application/json; charset=utf-8")
+      .send(usersHistory);
   });
 
   app.get("*", (_req, reply) => {
