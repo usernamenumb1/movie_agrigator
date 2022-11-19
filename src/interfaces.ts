@@ -37,7 +37,7 @@ export interface SingleMovieQueryParams {
 }
 export interface SearchedMovieQueryParams {
   language: string;
-  query: string | undefined;
+  query: string | null;
   page?: number;
 }
 

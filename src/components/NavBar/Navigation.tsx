@@ -12,7 +12,9 @@ interface LogOutProps {
 function LogIn({ text }: { text: string }) {
   return (
     <li className="nav-item">
-      <Link className="nav-link" to={routes.loginPage()}>{text}</Link>
+      <Link className="nav-link" to={routes.loginPage()}>
+        {text}
+      </Link>
     </li>
   );
 }
@@ -20,7 +22,9 @@ function LogIn({ text }: { text: string }) {
 function LogOut({ text, logOut }: LogOutProps) {
   return (
     <li className="nav-item">
-      <Link className="nav-link" to={routes.mainChatPage()} onClick={logOut}>{text}</Link>
+      <Link className="nav-link" to={routes.mainChatPage()} onClick={logOut}>
+        {text}
+      </Link>
     </li>
   );
 }
@@ -32,12 +36,20 @@ export default function Navigation() {
     <div className="">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link className="nav-link" to={routes.historyPage()}>History</Link>
+          <Link className="nav-link" to={routes.historyPage()}>
+            History
+          </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to={routes.favoritsPage()}>Favorites</Link>
+          <Link className="nav-link" to={routes.favoritsPage()}>
+            Favorites
+          </Link>
         </li>
-        {isAuthorized ? <LogOut text={t("nav.logOut")} logOut={logOut} /> : <LogIn text={t("nav.logIn")} />}
+        {isAuthorized ? (
+          <LogOut text={t("nav.logOut")} logOut={logOut} />
+        ) : (
+          <LogIn text={t("nav.logIn")} />
+        )}
       </ul>
     </div>
   );

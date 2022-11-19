@@ -31,8 +31,8 @@
 }
 
 .btn-steelblue:hover {
-  color: white;
-  background-color: steelblue;
+  color: rgb(28, 52, 72);
+  /* background-color: steelblue; */
   border-color: steelblue;
 }
 
@@ -149,6 +149,15 @@ div.custom-bg {
     background-size: cover;
     background-image: url('./images/37130.jpg');
   }
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 
 /* .grad1 {

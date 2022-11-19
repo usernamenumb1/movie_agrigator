@@ -13,14 +13,21 @@ export default function SindleMoviePage() {
   const { id } = useParams();
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;
-  const { data } = moviesAPI.useFetchSingleMovieQuery({ language: currentLocale, id });
+  const { data } = moviesAPI.useFetchSingleMovieQuery({
+    language: currentLocale,
+    id,
+  });
 
   const TOKEN = localStorage.getItem("token");
   const username = localStorage.getItem("username");
-  const { data: favorits, isSuccess } = userDataApi
-    .useFetchUsersFavoritsQuery({ username, TOKEN });
+  const { data: favorits, isSuccess } = userDataApi.useFetchUsersFavoritsQuery({
+    username,
+    TOKEN,
+  });
   const isInFavorites = favorits?.includes(id);
-  const [isFavoritButtonDown, setFavoritButton] = useState<boolean | null>(null);
+  const [isFavoritButtonDown, setFavoritButton] = useState<boolean | null>(
+    null,
+  );
 
   const [setUsersFavorites] = userDataApi.useSetUsersFavoritesMutation();
   const [deleteUsersFavorit] = userDataApi.useDeleteUsersFavoritMutation();
@@ -71,7 +78,7 @@ export default function SindleMoviePage() {
                   </div>
                   <div className="row mb-3 align-items-center">
                     <div className="col-xl-1">
-                      <div className="fs-3 fw-bold text-center bg-light text-dark rounded-3 transparent justify-content-center">
+                      <div className="fs-3 fw-bold text-center bg-light text-dark rounded-3 transparent">
                         {data?.voteAverage}
                       </div>
                     </div>
@@ -80,7 +87,9 @@ export default function SindleMoviePage() {
                         type="button"
                         aria-label="Like"
                         className={`${isFavoritButtonDown ? "in-favorits" : "favorits"} ms-2 p-1 btn rounded-5`}
-                        onClick={isFavoritButtonDown ? deleteFavorit : setFavorit}
+                        onClick={
+                          isFavoritButtonDown ? deleteFavorit : setFavorit
+                        }
                       >
                         <IoMdHeart size="2rem" />
                       </button>
