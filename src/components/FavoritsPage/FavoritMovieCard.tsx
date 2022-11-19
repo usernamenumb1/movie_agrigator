@@ -25,7 +25,9 @@ export default function FavoritMovieCard({ id, currentLocale }: Props) {
           />
           <div className="card-img-overlay">{data?.voteAverage}</div>
           <div className="card-body">
-            <h5 className="card-title white-space text-truncate">{data?.title}</h5>
+            <h5 className="card-title white-space text-truncate">
+              {data?.title}
+            </h5>
           </div>
         </Link>
       </div>

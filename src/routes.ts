@@ -9,6 +9,7 @@ export default {
   mainChatPage: () => "/",
   favoritsPage: () => [host, "favorits"].join("/"),
   historyPage: () => [host, "history"].join("/"),
+  searchResultsPage: () => [host, "results"].join("/"),
   loginPage: () => [host, "login"].join("/"),
   signUpPage: () => [host, "signup"].join("/"),
   singleMoviePage: () => [host, "movie", ":id"].join("/"),

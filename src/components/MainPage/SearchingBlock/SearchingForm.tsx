@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 import SearchPreview from "./SearchPreview";
 import useDebounce from "../../../hooks/useDebounce";
+import routes from "../../../routes";
 
 export default function SearchingForm() {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -14,11 +17,15 @@ export default function SearchingForm() {
     validationSchema: Yup.object({
       message: Yup.string().required(),
     }),
-    onSubmit: ({ message }, actions) => {
-      console.log(message);
-      actions.resetForm();
-      if (!inputRef.current) throw Error("inputRef is not assigned");
-      inputRef.current.focus();
+    onSubmit: ({ message }) => {
+      navigate({
+        pathname: routes.searchResultsPage(),
+        search: `?query=${message}`,
+      });
+      // console.log(message);
+      // actions.resetForm();
+      // if (!inputRef.current) throw Error("inputRef is not assigned");
+      // inputRef.current.focus();
     },
   });
 
