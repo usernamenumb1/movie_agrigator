@@ -14,7 +14,7 @@ export default function Form() {
   const navigate = useNavigate();
   const logInUser = ({ data }: { data: LogInArgs }) => {
     logIn(data);
-    navigate(routes.mainChatPage());
+    navigate(-1);
   };
 
   const formik = useFormik<InitialFormValues>({

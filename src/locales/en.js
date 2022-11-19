@@ -33,7 +33,8 @@ export default {
     },
     nav: {
       AppName: "MOVIESEA",
-      logoutButton: "Log out",
+      logOut: "Log Out",
+      logIn: "Log In",
     },
   },
 };

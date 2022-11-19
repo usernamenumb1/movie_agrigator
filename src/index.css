@@ -46,12 +46,17 @@
 
 a {
   text-decoration: none;
-  color: #6e6767;
+  color: rgb(28, 52, 72);
 }
 
 a:hover {
   text-decoration: underline;
-  color: black;
+  color: rgb(28, 52, 72);
+}
+
+li.nav-item>a {
+  text-decoration: none;
+  color: rgb(28, 52, 72);
 }
 
 .app-name {
@@ -113,6 +118,13 @@ div.custom-bg {
 }
 
 .favorits:hover {
+  transform: scale(1.3, 1.3);
+  border: none;
+  color: whitesmoke;
+  opacity: 1;
+}
+
+.in-favorits {
   transform: scale(1.3, 1.3);
   border: none;
   color: whitesmoke;
