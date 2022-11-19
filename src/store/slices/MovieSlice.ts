@@ -1,20 +1,25 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
-import { MovieStore } from "../../interfaces";
+import { UserDataStore } from "../../interfaces";
 
-const initialState: MovieStore = {
-  currentMovie: null,
+const initialState: UserDataStore = {
+  favorits: [],
+  history: [],
 };
 
-const movieSlice = createSlice({
-  name: "movie",
+const userDataSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {
-    addMovie: (state, { payload }) => {
-      state.currentMovie = payload;
+    addFavorits: (state, { payload }) => {
+      state.favorits = payload;
+    },
+    removeFavorit: (state, { payload }) => {
+      const filtredFavorits = state.favorits.filter((id) => id !== payload);
+      state.favorits = [...filtredFavorits];
     },
   },
 });
 
-export const { addMovie } = movieSlice.actions;
-export default movieSlice.reducer;
+export const { addFavorits } = userDataSlice.actions;
+export default userDataSlice.reducer;

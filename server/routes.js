@@ -7,6 +7,10 @@ const getNextId = () => Number(_.uniqueId());
 
 const buildState = (defaultState) => {
   const state = {
+    usersData: [
+      { id: 1, favorits: [], history: [] },
+      { id: 2, favorits: [], history: [] },
+    ],
     users: [
       { id: 1, username: "admin", password: "admin" },
       { id: 2, username: "admin1", password: "admin1" },
@@ -50,10 +54,60 @@ export default (app, defaultState = {}) => {
     const newUser = { id: getNextId(), username, password };
     const token = app.jwt.sign({ userId: newUser.id });
     state.users.push(newUser);
+    state.usersData.push({ id: newUser.id, favorits: [], history: [] });
     reply
       .code(201)
       .header("Content-Type", "application/json; charset=utf-8")
       .send({ token, username });
+  });
+
+  app.post("/api/v1/data/favorits", async (req, reply) => {
+    const { movieId, username } = req.body;
+    const { id: userId } = state.users.find((user) => user.username === username);
+    const { favorits: usersFavorites} = state.usersData.find((userData) => userData.id === userId);
+    const alreadyInFavorits = usersFavorites.includes(movieId);
+    if (alreadyInFavorits) {
+      reply
+        .header("Content-Type", "application/json; charset=utf-8")
+        .send(new Conflict());
+    } else {
+      const updatedData = state.usersData.map((data) => data.id === userId ? { id: userId, favorits: [...data.favorits, movieId], history: [...data.history]} : data);
+      state.usersData = updatedData;
+      reply
+        .code(200)
+        .header("Content-Type", "application/json; charset=utf-8")
+        .send(state.usersData);
+    }
+  });
+
+  app.delete("/api/v1/data/favorits", async (req, reply) => {
+    const { movieId, username } = req.body;
+    const { id: userId } = state.users.find((user) => user.username === username);
+    const { favorits: usersFavorites} = state.usersData.find((userData) => userData.id === userId);
+    const deletedFavorites = usersFavorites.filter((favoritMovieId) => favoritMovieId !== movieId)
+    const alreadyDeleted = !usersFavorites.includes(movieId);
+    if (alreadyDeleted) {
+      reply
+        .header("Content-Type", "application/json; charset=utf-8")
+        .send(new Conflict());
+    } else {
+      const updatedData = state.usersData.map((data) => data.id === userId ? { id: userId, favorits: [...deletedFavorites], history: [...data.history]} : data);
+      state.usersData = updatedData;
+      reply
+        .code(200)
+        .header("Content-Type", "application/json; charset=utf-8")
+        .send(state.usersData);
+    }
+  });
+
+  app.get("/api/v1/data/favorits", async (req, reply) => {
+    const { username } = req.query;
+    const { id: userId } = state.users.find((user) => user.username === username);
+    const { favorits: usersFavorites} = state.usersData.find((userData) => userData.id === userId);
+    reply
+      .code(200)
+      .header("Content-Type", "application/json; charset=utf-8")
+      .send(usersFavorites);
   });
 
   app.get("*", (_req, reply) => {

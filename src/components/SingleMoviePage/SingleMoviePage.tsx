@@ -1,24 +1,47 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { IoMdHeart } from "react-icons/io";
 import routes from "../../routes";
 import moviesAPI from "../../store/API/MoviesAPI";
+import userDataApi from "../../store/API/UserDataAPI";
+import { AuthorizationContext } from "../context/AuthProvider";
 
 export default function SindleMoviePage() {
+  const { isAuthorized } = useContext(AuthorizationContext);
+  const navigate = useNavigate();
   const { id } = useParams();
-
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;
+  const { data } = moviesAPI.useFetchSingleMovieQuery({ language: currentLocale, id });
 
-  const { data } = moviesAPI.useFetchSingleMovieQuery({
-    language: currentLocale,
-    id,
-  });
+  const TOKEN = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
+  const { data: favorits, isSuccess } = userDataApi
+    .useFetchUsersFavoritsQuery({ username, TOKEN });
+  const isInFavorites = favorits?.includes(id);
+  const [isFavoritButtonDown, setFavoritButton] = useState<boolean | null>(null);
 
-  const setFavorits = () => {
-    console.log("in favorits");
+  const [setUsersFavorites] = userDataApi.useSetUsersFavoritesMutation();
+  const [deleteUsersFavorit] = userDataApi.useDeleteUsersFavoritMutation();
+
+  const setFavorit = () => {
+    if (isAuthorized) {
+      setFavoritButton(!isFavoritButtonDown);
+      setUsersFavorites({ req: { movieId: id, username }, TOKEN });
+    } else {
+      navigate(routes.loginPage());
+    }
   };
+
+  const deleteFavorit = () => {
+    setFavoritButton(!isFavoritButtonDown);
+    deleteUsersFavorit({ req: { movieId: id, username }, TOKEN });
+  };
+
+  useEffect(() => {
+    setFavoritButton(isInFavorites);
+  }, [isSuccess, isInFavorites]);
 
   return (
     <div className="row">
@@ -56,8 +79,8 @@ export default function SindleMoviePage() {
                       <button
                         type="button"
                         aria-label="Like"
-                        className="ms-2 p-1 btn favorits rounded-5"
-                        onClick={setFavorits}
+                        className={`${isFavoritButtonDown ? "in-favorits" : "favorits"} ms-2 p-1 btn rounded-5`}
+                        onClick={isFavoritButtonDown ? deleteFavorit : setFavorit}
                       >
                         <IoMdHeart size="2rem" />
                       </button>

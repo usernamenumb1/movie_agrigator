@@ -79,6 +79,7 @@ export interface NormalizedFetchedSingleMovie {
   voteAverage: number;
 }
 
-export interface MovieStore {
-  currentMovie: Movie | null;
+export interface UserDataStore {
+  favorits: string[];
+  history: string[];
 }

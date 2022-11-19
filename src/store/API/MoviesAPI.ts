@@ -9,7 +9,7 @@ import API_TOKEN from "../../secret";
 import { transformSingleMovieResponse } from "../../utils";
 
 const moviesAPI = createApi({
-  reducerPath: "popularMovieAPI",
+  reducerPath: "movieAPI",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3" }),
   endpoints: (build) => ({
     fetchPopularMovies: build.query<FetchedMovies, string>({
