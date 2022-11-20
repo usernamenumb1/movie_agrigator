@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import routes from "../../routes";
 import moviesAPI from "../../store/API/MoviesAPI";
@@ -34,3 +35,13 @@ export default function FavoritMovieCard({ id, currentLocale }: Props) {
     </div>
   );
 }
+
+FavoritMovieCard.defaultProps = {
+  id: 0,
+  currentLocale: "en-US",
+};
+
+FavoritMovieCard.propTypes = {
+  id: PropTypes.string,
+  currentLocale: PropTypes.string,
+};

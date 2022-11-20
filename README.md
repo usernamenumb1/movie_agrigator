@@ -9,6 +9,7 @@
 - Есть применение Контекст API - [AuthProvider](./src/components/context/AuthProvider.tsx).
 - Есть применение предохранителя - [App](./src/App.tsx), [ErrorFallBack](./src/components/ErrorFallBack.tsx).
 - Есть хотя бы один кастомный хук - [hooks](./src/hooks/useDebounce.ts).
+- Хотя бы несколько компонентов используют PropTypes - [FavoritMovieCard](./src/components/FavoritsPage/FavoritMovieCard.tsx)
 - Поиск не триггерит много запросов к серверу.
 - Есть применение lazy + Suspense - [MainPage](./src/components/MainPage/MainPage.tsx)
 
@@ -18,6 +19,7 @@
 - Используем слайсы - [MovieSlice](./src/store/slices/MovieSlice.ts).
 - Используется RTK Query - [MoviesAPI](./src/store/API/MoviesAPI.ts), [UserDataAPI](./src/store/API/UserDataAPI.ts).
 - Используется Transforming Responses - [MoviesAPI](./src/store/API/MoviesAPI.ts).
+- Есть хотя бы одна кастомная мидлвара - [logger](./src/store/index.ts).
 
 ## Необязательные требования
 
