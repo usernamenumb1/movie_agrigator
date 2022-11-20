@@ -35,6 +35,8 @@ export default {
       AppName: "MOVIESEA",
       logOut: "Log Out",
       logIn: "Log In",
+      History: "History",
+      Favorits: "Favorits",
     },
   },
 };

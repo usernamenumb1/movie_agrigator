@@ -15,7 +15,7 @@ export default function Favorits() {
   return (
     <div className="container pt-4">
       <div className="row">
-        <div className="col-xl-2">filters</div>
+        <div className="col-xl-2" />
         <div className="col-xl-8">
           <div className="row">
             {data?.map((id: string) => (

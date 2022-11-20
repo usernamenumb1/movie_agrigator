@@ -6,7 +6,8 @@ const imageHost: string = "https://image.tmdb.org/t/p";
 
 export default {
   loginPath: () => [host, prefix, "login"].join("/"),
-  mainChatPage: () => "/",
+  signUpPath: () => [host, prefix, "signup"].join("/"),
+  mainPage: () => "/",
   favoritsPage: () => [host, "favorits"].join("/"),
   historyPage: () => [host, "history"].join("/"),
   searchResultsPage: () => [host, "results"].join("/"),

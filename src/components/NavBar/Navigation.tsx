@@ -22,7 +22,7 @@ function LogIn({ text }: { text: string }) {
 function LogOut({ text, logOut }: LogOutProps) {
   return (
     <li className="nav-item">
-      <Link className="nav-link" to={routes.mainChatPage()} onClick={logOut}>
+      <Link className="nav-link" to={routes.mainPage()} onClick={logOut}>
         {text}
       </Link>
     </li>
@@ -37,12 +37,12 @@ export default function Navigation() {
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link className="nav-link" to={routes.historyPage()}>
-            History
+            {t("nav.History")}
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to={routes.favoritsPage()}>
-            Favorites
+            {t("nav.Favorits")}
           </Link>
         </li>
         {isAuthorized ? (

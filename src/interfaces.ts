@@ -14,6 +14,7 @@ export interface AuthContext {
 export interface InitialFormValues {
   username: string;
   password: string;
+  confirmPassword?: string;
 }
 
 export interface FormProps {

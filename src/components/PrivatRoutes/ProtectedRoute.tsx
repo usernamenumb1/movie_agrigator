@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import routes from "../../routes";
 
-export default function ProtectedMainPage({
+export default function ProtectedRoute({
   isAuthorized,
 }: {
   isAuthorized: boolean;
