@@ -5,7 +5,7 @@
 - Функциональные компоненты c хуками в приоритете над классовыми.
 - Есть четкое разделение на умные и глупые компоненты - [pages](./src/components/MainPage/MainPage.tsx) и [components](./src/components/MainPage/PopularMovies.tsx).
 - Есть рендеринг списков - [SearchResults](./src/components/SearchResultPage/SearchResults.tsx)
-- Реализована хотя бы одна форма - [LogIn](./src/components/LoginPage/Form.tsx), [SignIn](./src/pages/SignIn/SignIn.tsx).
+- Реализована хотя бы одна форма - [LogIn](./src/components/LoginPage/Form.tsx).
 - Есть применение Контекст API - [AuthProvider](./src/components/context/AuthProvider.tsx).
 - Есть применение предохранителя - [App](./src/App.tsx), [ErrorFallBack](./src/components/ErrorFallBack.tsx).
 - Есть хотя бы один кастомный хук - [hooks](./src/hooks/useDebounce.ts).
