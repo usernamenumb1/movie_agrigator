@@ -8,6 +8,8 @@ import {
 import API_TOKEN from "../../secret";
 import { transformSingleMovieResponse } from "../../utils";
 
+const API_KEY = process.env.API_TOKEN ? process.env.API_TOKEN : API_TOKEN;
+
 const moviesAPI = createApi({
   reducerPath: "movieAPI",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3" }),
@@ -16,7 +18,7 @@ const moviesAPI = createApi({
       query: (type) => ({
         url: "/movie/popular",
         params: {
-          api_key: API_TOKEN,
+          api_key: API_KEY,
           language: type,
         },
       }),
@@ -25,7 +27,7 @@ const moviesAPI = createApi({
       query: ({ language, id }) => ({
         url: `/movie/${id}`,
         params: {
-          api_key: API_TOKEN,
+          api_key: API_KEY,
           language,
         },
       }),
@@ -35,7 +37,7 @@ const moviesAPI = createApi({
       query: ({ language, query, page = 1 }) => ({
         url: "/search/movie",
         params: {
-          api_key: API_TOKEN,
+          api_key: API_KEY,
           language,
           query,
           page,
